@@ -9,7 +9,7 @@ public class Main {
         int c = Integer.parseInt(br.readLine());
         double avg = 0;
         double cnt[] = new double[c];
-        double per[] = new double[c];
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < c; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine(), " ");
             int n = Integer.parseInt(st.nextToken());
@@ -22,11 +22,9 @@ public class Main {
             for (int k = 0; k < n; k++) {
                 if (score[k] > avg) cnt[i]++;
             }
-            per[i] = cnt[i] / n * 100;
+            sb.append(String.format("%.3f", cnt[i] / n * 100)).append('%').append('\n');
             avg = 0;
         }
-        for (int i = 0; i < c; i++) {
-            System.out.printf("%.3f%%\n", per[i]);
-        }
+        System.out.println(sb);
     }
 }
