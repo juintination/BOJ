@@ -50,12 +50,12 @@ public class Main {
         }
         mergeSort(a, 0, n - 1, b);
         sb.append(a[0]).append('\n');
-		for (int i = 1; i < n; i++) {
-			// 중복되지 않는 단어만 출력
-			if (!a[i].equals(a[i - 1])) {
-				sb.append(a[i]).append('\n');
-			}
-		}
+        for (int i = 1; i < n; i++) {
+            // 중복되지 않는 단어만 출력
+            if (!a[i].equals(a[i - 1])) {
+                sb.append(a[i]).append('\n');
+            }
+        }
         System.out.print(sb);
     }
 }

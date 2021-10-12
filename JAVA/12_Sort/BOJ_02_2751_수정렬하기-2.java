@@ -27,9 +27,9 @@ public class Main {
         }
         int[] b = new int[n];
         mergeSort(a, 0, n - 1, b);
-        for(int i = 0; i< n; i++) {
-			sb.append(a[i]).append('\n');
-		}
-		System.out.println(sb);
+        for (int i = 0; i < n; i++) {
+            sb.append(a[i]).append('\n');
+        }
+        System.out.println(sb);
     }
 }

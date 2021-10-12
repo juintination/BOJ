@@ -9,7 +9,7 @@ public class Main {
         StringBuilder sb = new StringBuilder();
         while ((str = br.readLine()) != null) {
             int x = str.charAt(0) - '0';
-			int y = str.charAt(2) - '0';
+            int y = str.charAt(2) - '0';
             sb.append(x + y).append("\n");
         }
         System.out.print(sb);

@@ -16,7 +16,7 @@ public class Main {
                     score++;
                     sum += score;
                 }
-				else score = 0;
+                else score = 0;
             }
             sb.append(sum).append("\n");
             score = 0;

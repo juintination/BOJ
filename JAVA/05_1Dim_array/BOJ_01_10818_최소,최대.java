@@ -14,6 +14,6 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
         Arrays.sort(arr);
-		System.out.print(arr[0] + " " + arr[n - 1]);
+        System.out.print(arr[0] + " " + arr[n - 1]);
     }
 }
