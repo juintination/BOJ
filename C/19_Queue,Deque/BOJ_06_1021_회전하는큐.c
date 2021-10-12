@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+int move = 0;
 
 typedef struct node {
 	int data;
@@ -11,13 +12,11 @@ typedef struct {
 	node* front;
 	node* rear;
 	int count;
-	int move;
 } Deque;
 
 void initDeque(Deque* deque) {
 	deque->front = deque->rear = NULL;
 	deque->count = 0;
-	deque->move = 0;
 }
 
 int empty(Deque* deque) {
@@ -91,7 +90,7 @@ int pop_back(Deque* deque) {
 
 int moving(Deque* deque, int num) {
 	int rightcnt = 0, leftcnt = 0;
-	int tmp = deque->front;
+	node* tmp = deque->front;
 	for (int i = 0; i < deque->count; i++) {
 		if (num == deque->front->data) break;
 		deque->front = deque->front->next;
@@ -108,7 +107,7 @@ void rotate(Deque* deque, int movecnt) {
 		for (int i = 0; i < -movecnt; i++) {
 			int data = pop_back(deque);
 			push_front(deque, data);
-			(deque->move)++;
+			move++;
 		}
 	}
 	else if (movecnt == 0) return;
@@ -116,7 +115,7 @@ void rotate(Deque* deque, int movecnt) {
 		for (int i = 0; i < movecnt; i++) {
 			int data = pop_front(deque);
 			push_back(deque, data);
-			(deque->move)++;
+			move++;
 		}
 	}
 }
@@ -137,5 +136,5 @@ main() {
 		rotate(&deque, moving(&deque, arr[i]));
 		pop_front(&deque);
 	}
-	printf("%d\n", deque.move);
+	printf("%d\n", move);
 }
