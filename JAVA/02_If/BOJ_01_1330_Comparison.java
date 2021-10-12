@@ -11,6 +11,6 @@ public class Main {
         int b = Integer.parseInt(st.nextToken());
         if (a > b) System.out.println(">");
         else if (a < b) System.out.println("<");
-        else if (a == b) System.out.println("==");
+        else System.out.println("==");
     }
 }
