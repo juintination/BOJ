@@ -2,12 +2,12 @@
 main() {
 	int n, a, b;
 	scanf("%d", &n);
-    int* result = (int*)malloc(sizeof(int) * n);
+	int* result = (int*)malloc(sizeof(int) * n);
 	for (int i = 0; i < n; i++) {
 		scanf("%d %d", &a, &b);
-        result[i] = a + b;
+		result[i] = a + b;
 	}
-    for (int i = 0; i < n; i++) {
+	for (int i = 0; i < n; i++) {
 		printf("%d\n", result[i]);
 	}
 }
