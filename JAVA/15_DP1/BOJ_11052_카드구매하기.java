@@ -4,19 +4,29 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
+
+    static int[] cost;
+    static int[] dp;
+
+    static int card(int n) {
+        if (dp[n] == 0) {
+            for (int i = 1; i <= n; i++) {
+                dp[n] = Math.max(dp[n], card(n - i) + cost[i]);
+            }
+        }
+        return dp[n];
+    }
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        int[] dp = new int[n + 1];
+        cost = new int[n + 1];
+        dp = new int[n + 1];
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
         for (int i = 1; i <= n; i++) {
-            dp[i] = Integer.parseInt(st.nextToken());
+            cost[i] = Integer.parseInt(st.nextToken());
         }
-        for (int i = 2; i <= n; i++) {
-            for (int j = 1; j < i; j++) {
-                dp[i] = Math.max(dp[i], dp[i - j] + dp[j]);
-            }
-        }
-        System.out.println(dp[n]);
+        dp[1] = cost[1];
+        System.out.println(card(n));
     }
 }
