@@ -1,31 +1,20 @@
 #include <stdio.h>
-int cost[1000][3], dp[1000][3];
-int math_min(int a, int b) {
-	return a < b ? a : b;
-}
-int paint(int n, int color) {
-	if (dp[n][color] == 0) {
-		if (color == 0) {
-			dp[n][0] = math_min(paint(n - 1, 2), paint(n - 1, 1)) + cost[n][0];
-		}
-		else if (color == 1) {
-			dp[n][1] = math_min(paint(n - 1, 2), paint(n - 1, 0)) + cost[n][1];
-		}
-		else {
-			dp[n][2] = math_min(paint(n - 1, 1), paint(n - 1, 0)) + cost[n][2];
-		}
-	}
-	return dp[n][color];
-}
+#define math_min(a, b) a < b ? a : b
+int dp[1000][3];
 main() {
 	int n;
 	scanf("%d", &n);
 	for (int i = 0; i < n; i++) {
-		scanf("%d %d %d", &cost[i][0], &cost[i][1], &cost[i][2]);
+		scanf("%d %d %d", &dp[i][0], &dp[i][1], &dp[i][2]);
 	}
-	dp[0][0] = cost[0][0];
-	dp[0][1] = cost[0][1];
-	dp[0][2] = cost[0][2];
-	int result = math_min(paint(n - 1, 0), math_min(paint(n - 1, 1), paint(n - 1, 2)));
-	printf("%d", result);
+	for (int i = 1; i < n; i++) {
+		dp[i][0] += math_min(dp[i - 1][1], dp[i - 1][2]);
+		dp[i][1] += math_min(dp[i - 1][0], dp[i - 1][2]);
+		dp[i][2] += math_min(dp[i - 1][0], dp[i - 1][1]);
+	}
+	int result = dp[n - 1][0];
+	for (int i = 1; i <= 2; i++) {
+		result = math_min(result, dp[n - 1][i]);
+	}
+	printf("%d\n", result);
 }
