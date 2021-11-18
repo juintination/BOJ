@@ -12,7 +12,7 @@ public class Main {
     static int[][] cost;
     static int[][] dp;
 
-    static int paint(int n, int color, int fix) {
+    public static int paint(int n, int color, int fix) {
         if (n == 0) {
             if (color == fix) {
                 dp[n][color] = 1000001;

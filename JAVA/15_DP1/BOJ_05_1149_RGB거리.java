@@ -12,7 +12,7 @@ public class Main {
     static int[][] cost;
     static int[][] dp;
 
-    static int paint(int n, int color) {
+    public static int paint(int n, int color) {
         if (dp[n][color] == 0) {
             if (color == 0) {
                 dp[n][0] = Math.min(paint(n - 1, 1), paint(n - 1, 2)) + cost[n][0];

@@ -8,7 +8,7 @@ public class Main {
     static String str2;
     static Integer[][] dp;
 
-    static int LCS(int x, int y) {
+    public static int LCS(int x, int y) {
         if (x == -1 || y == -1) {
             return 0;
         }

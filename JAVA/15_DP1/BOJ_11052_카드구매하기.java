@@ -8,7 +8,7 @@ public class Main {
     static int[] cost;
     static int[] dp;
 
-    static int card(int n) {
+    public static int card(int n) {
         if (dp[n] == 0) {
             for (int i = 1; i <= n; i++) {
                 dp[n] = Math.max(dp[n], card(n - i) + cost[i]);

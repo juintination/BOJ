@@ -7,7 +7,7 @@ public class Main {
     static Integer[] dp;
     static int[] arr;
 
-    static int wine(int n) {
+    public static int wine(int n) {
         if (dp[n] == null) {
             dp[n] = Math.max(Math.max(wine(n - 2), wine(n - 3) + arr[n - 1]) + arr[n], wine(n - 1));
         }

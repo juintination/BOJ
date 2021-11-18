@@ -6,7 +6,7 @@ public class Main {
 
     static int[] dp;
 
-    static int square(int n) {
+    public static int square(int n) {
         if (dp[n] == 0) {
             dp[n] = n;
             for (int i = 2; i <= (int) Math.sqrt(n); i++) {

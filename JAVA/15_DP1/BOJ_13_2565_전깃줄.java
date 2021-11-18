@@ -8,7 +8,7 @@ public class Main {
     static int[] arr;
     static int[] dp;
 
-    static int wire(int n) {
+    public static int wire(int n) {
         if (dp[n] == 1) {
             for (int i = n + 1; i < dp.length; i++) {
                 if (arr[n] < arr[i]) {

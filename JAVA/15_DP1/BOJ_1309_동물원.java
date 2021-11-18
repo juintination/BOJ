@@ -10,7 +10,7 @@ public class Main {
 
     static int[][] dp;
 
-    static int zoo(int n, int direction) {
+    public static int zoo(int n, int direction) {
         if (dp[n][direction] == 0) {
             if (direction == 0) {
                 dp[n][0] = (zoo(n - 1, 0) + zoo(n - 1, 1) + zoo(n - 1, 2)) % 9901;

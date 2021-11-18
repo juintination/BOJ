@@ -6,7 +6,7 @@ public class Main {
 
     static int[] dp;
 
-    static int tile(int n) {
+    public static int tile(int n) {
         if (dp[n] == 0) {
             dp[n] = tile(n - 2) * 3;
             for (int i = 4; i <= n; i += 2) {

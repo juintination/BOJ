@@ -9,7 +9,7 @@ public class Main {
     static Integer[][] dp;
     static int n;
 
-    static int triangle(int x, int y) {
+    public static int triangle(int x, int y) {
         if (dp[x][y] == null) {
             dp[x][y] = Math.max(triangle(x + 1, y), triangle(x + 1, y + 1)) + arr[x][y];
         }

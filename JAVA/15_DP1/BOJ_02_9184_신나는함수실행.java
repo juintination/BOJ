@@ -7,7 +7,7 @@ public class Main {
 
     static int[][][] dp = new int[21][21][21];
 
-    static int w(int a, int b, int c) {
+    public static int w(int a, int b, int c) {
         if (a <= 0 || b <= 0 || c <= 0) {
             return 1;
         } else if (a > 20 || b > 20 || c > 20) {

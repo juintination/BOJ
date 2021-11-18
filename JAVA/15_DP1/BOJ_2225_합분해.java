@@ -7,7 +7,7 @@ public class Main {
 
     static int[][] dp;
 
-    static int decomposition(int n, int k) {
+    public static int decomposition(int n, int k) {
         if (k == 1) {
             dp[n][k] = 1;
         } else if (dp[n][k] == 0) {

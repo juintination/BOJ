@@ -7,7 +7,7 @@ public class Main {
     static Integer[] dp;
     static int[] arr;
 
-    static int stair(int n) {
+    public static int stair(int n) {
         if (dp[n] == null) {
             dp[n] = Math.max(stair(n - 2), stair(n - 3) + arr[n - 1]) + arr[n];
         }

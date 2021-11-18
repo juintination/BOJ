@@ -6,7 +6,7 @@ public class Main {
 
     static Integer[] dp;
 
-    static int recur(int n) {
+    public static int recur(int n) {
         if (dp[n] == null) {
             if (n % 6 == 0) {
                 dp[n] =  Math.min(recur(n / 3), recur(n / 2)) + 1;
