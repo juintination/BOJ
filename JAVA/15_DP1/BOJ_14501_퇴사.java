@@ -38,6 +38,6 @@ public class Main {
         for (int i = 0; i < n; i++) {
             max = Math.max(max, resign(i));
         }
-        System.out.println(max);
+        System.out.print(max);
     }
 }

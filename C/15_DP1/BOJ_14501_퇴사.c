@@ -1,7 +1,7 @@
 #include <stdio.h>
 #define math_max(a, b) a > b ? a : b
 main() {
-	int n, arr[15][15], dp[16];
+	int n, arr[15][15], dp[15];
 	scanf("%d", &n);
 	for (int i = 0; i < n; i++) {
 		scanf("%d %d", &arr[i][0], &arr[i][1]);
