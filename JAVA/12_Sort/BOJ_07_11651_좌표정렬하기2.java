@@ -1,57 +1,43 @@
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.StringTokenizer;
 
-public class Main {
-    public static void quickSort(int arrx[], int arry[], int left, int right) {
-        int i = left, j = right, pivot = arry[(left + right) / 2], temp;
-        do {
-            while (arry[i] < pivot) i++;
-            while (arry[j] > pivot) j--;
-            if (i <= j) {
-                temp = arrx[i];
-                arrx[i] = arrx[j];
-                arrx[j] = temp;
-                temp = arry[i];
-                arry[i] = arry[j];
-                arry[j] = temp;
-                i++;
-                j--;
-            }
-        } while (i <= j);
-        if (left < j) quickSort(arrx, arry, left, j);
-        if (i < right) quickSort(arrx, arry, i, right);
+class point implements Comparable<point> {
+    int x, y;
+
+    public point(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
+    @Override
+    public int compareTo(point o) {
+        if (this.y == o.y) {
+            return this.x - o.x;
+        } else {
+            return this.y - o.y;
+        }
+    }
+}
+
+public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
         int n = Integer.parseInt(br.readLine());
-        int a[] = new int[n];
-        int b[] = new int[n];
+        ArrayList<point> list = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-            a[i] = Integer.parseInt(st.nextToken());
-            b[i] = Integer.parseInt(st.nextToken());
+            int x = Integer.parseInt(st.nextToken());
+            int y = Integer.parseInt(st.nextToken());
+            list.add(new point(x, y));
         }
-        quickSort(a, b, 0, n - 1);
-        while (true) {
-            int cnt = 0, tmp;
-            for (int i = 0; i < n - 1; i++) {
-                if (b[i] == b[i + 1]) {
-                    if (a[i] > a[i + 1]) {
-                        tmp = a[i + 1];
-                        a[i + 1] = a[i];
-                        a[i] = tmp;
-                        cnt++;
-                    }
-                }
-            }
-            if (cnt == 0) break;
-        }
-        for (int i = 0; i < n; i++) {
-            sb.append(a[i]).append(" ").append(b[i]).append("\n");
+        Collections.sort(list);
+        StringBuilder sb = new StringBuilder();
+        for (point p : list) {
+            sb.append(p.x).append(" ").append(p.y).append("\n");
         }
         System.out.print(sb);
     }
