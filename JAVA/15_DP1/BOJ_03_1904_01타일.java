@@ -1,24 +1,31 @@
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class Main {
 
+    static int[] dp;
+
     public static int tile(int n) {
-        int f0 = 1;
-        int f1 = 1;
-        int sum = 1;
-        for (int i = 1; i < n; i++) {
-            sum = (f1 + f0) % 15746;
-            f0 = f1;
-            f1 = sum;
+        if (dp[n] == -1) {
+            dp[n] = (tile(n - 1) + tile(n - 2)) % 15746;
         }
-        return sum;
+        return dp[n];
     }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        System.out.println(tile(n));
+        dp = new int[n + 1];
+        if (n > 2) {
+            Arrays.fill(dp, -1);
+            for (int i = 0; i <= 2; i++) {
+                dp[i] = i;
+            }
+            System.out.println(tile(n));
+        } else {
+            System.out.println(n);
+        }
     }
 }
