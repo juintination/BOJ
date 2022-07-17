@@ -29,7 +29,7 @@ public class Main {
     static boolean[] visited;
     static ArrayList<point>[] list;
 
-    public static void bfs() {
+    public static void dijkstra() {
         PriorityQueue<point> queue = new PriorityQueue<>();
         queue.offer(new point(k, 0));
         while (!queue.isEmpty()) {
@@ -70,7 +70,7 @@ public class Main {
             int w = Integer.parseInt(st.nextToken());
             list[u].add(new point(v, w));
         }
-        bfs();
+        dijkstra();
         StringBuilder sb = new StringBuilder();
         for (int i = 1; i <= n; i++) {
             if (min[i] == INF) {
