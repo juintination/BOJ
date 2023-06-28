@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
@@ -16,41 +17,40 @@ class point implements Comparable<point> {
 
     @Override
     public int compareTo(point o) {
-        return cnt - o.cnt;
+        return this.cnt - o.cnt;
     }
 
 }
 
 public class Main {
 
-    static int w, h, x, y;
-    static int[][] mirror;
+    static int w, h;
+    static int[][][] mirror;
     static char[][] arr;
-    static point start;
+    static point start, end;
 
-    public static void bfs() {
+    public static void dijkstra() {
         PriorityQueue<point> queue = new PriorityQueue<>();
         queue.offer(start);
         int[] dx = { 1, 0, -1, 0 };
         int[] dy = { 0, 1, 0, -1 };
         while (!queue.isEmpty()) {
             point p = queue.poll();
-            if (p.x == x && p.y == y) {
-                System.out.println(p.cnt);
+            if (p.x == end.x && p.y == end.y) {
+                end.cnt = p.cnt;
                 return;
             }
             for (int i = 0; i < 4; i++) {
                 int nx = p.x + dx[i];
                 int ny = p.y + dy[i];
-                if (nx >= 0 && nx < h && ny >= 0 && ny < w && arr[nx][ny] == '.') {
-                    if (p.i == i || p.i == -1) {
-                        if (mirror[nx][ny] == 0 || p.cnt <= mirror[nx][ny]) {
-                            mirror[nx][ny] = p.cnt;
-                            queue.offer(new point(nx, ny, i, p.cnt));
-                        }
-                    } else {
-                        if (mirror[nx][ny] == 0 || p.cnt + 1 <= mirror[nx][ny]) {
-                            mirror[nx][ny] = p.cnt + 1;
+                if (0 <= nx && nx < h && 0 <= ny && ny < w && arr[nx][ny] != '*') {
+                    if (p.i == i) {
+                        if (p.cnt < mirror[i][nx][ny]) {
+                            mirror[i][nx][ny] = p.cnt;
+                            queue.offer(new point(nx, ny, i, p.cnt));                            }
+                    } else if (Math.abs(p.i - i) != 2) {
+                        if (p.cnt + 1 < mirror[i][nx][ny]) {
+                            mirror[i][nx][ny] = p.cnt + 1;
                             queue.offer(new point(nx, ny, i, p.cnt + 1));
                         }
                     }
@@ -65,22 +65,26 @@ public class Main {
         w = Integer.parseInt(st.nextToken());
         h = Integer.parseInt(st.nextToken());
         arr = new char[h][w];
-        mirror = new int[h][w];
+        mirror = new int[4][h][w];
+        for (int k = 0; k < 4; k++) {
+            for (int i = 0; i < h; i++) {
+                Arrays.fill(mirror[k][i], Integer.MAX_VALUE);
+            }
+        }
         for (int i = 0; i < h; i++) {
             String str = br.readLine();
+            arr[i] = str.toCharArray();
             for (int j = 0; j < w; j++) {
-                arr[i][j] = str.charAt(j);
                 if (arr[i][j] == 'C') {
                     if (start == null) {
-                        start = new point(i, j, -1, 0);
+                        start = new point(i, j, -5, -1);
                     } else {
-                        x = i;
-                        y = j;
-                        arr[i][j] = '.';
+                        end = new point(i, j, -5, Integer.MAX_VALUE);
                     }
                 }
             }
         }
-        bfs();
+        dijkstra();
+        System.out.println(end.cnt);
     }
 }
